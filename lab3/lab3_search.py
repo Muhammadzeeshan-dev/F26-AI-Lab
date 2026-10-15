@@ -1,39 +1,40 @@
-from collections import deque
-
-# Graph
 graph = {
     "A": ["B", "C"],
     "B": ["D", "E"],
     "C": ["F"],
     "D": [],
-    "E": ["G"],
-    "F": [],
+    "E": [],
+    "F": ["G"],
     "G": []
 }
 
-# BFS
-def bfs(start, goal):
-    q = deque([(start, [start])])
-    seen = {start}
-    while q:
-        node, path = q.popleft()
-        if node == goal: return path
-        for n in graph[node]:
-            if n not in seen:
-                seen.add(n)
-                q.append((n, path + [n]))
+visited_bfs = []
+queue = []
 
-# DFS
-def dfs(start, goal):
-    stack = [(start, [start])]
-    seen = set()
+def bfs(node):
+    queue.append(node)
+    while queue:
+        temp = queue.pop(0)
+        if temp not in visited_bfs:
+            visited_bfs.append(temp)
+            for child in graph[temp]:
+                queue.append(child)
+
+bfs("A")
+print("BFS:", visited_bfs)
+
+
+visited_dfs = []
+stack = []
+
+def dfs(node):
+    stack.append(node)
     while stack:
-        node, path = stack.pop()
-        if node == goal: return path
-        if node in seen: continue
-        seen.add(node)
-        for n in reversed(graph[node]):
-            stack.append((n, path + [n]))
+        temp = stack.pop()
+        if temp not in visited_dfs:
+            visited_dfs.append(temp)
+            for child in graph[temp]:
+                stack.append(child)
 
-print("BFS Path:", bfs("A", "G"))
-print("DFS Path:", dfs("A", "G"))
+dfs("A")
+print("DFS:", visited_dfs)
