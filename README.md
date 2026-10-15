@@ -1,10 +1,17 @@
-# F26-AI-Lab
-# AI Lab 2 - Intelligent Agents and PEAS
+# AI Lab Tasks
 
-This repository contains the complete solution for Artificial Intelligence Lab 2.
+This repository contains my AI lab tasks for Sir Rasikh Ali.
 
-### Files Included:
-- `lab2_percepts.py`: Base reflex agent implementation (Section 2.5).
-- `lab2_model.py`: Stateful agent tracking the last mode to prevent duplicate commands (Task 3).
-- `lab2_check.py`: Edge-case sensor noise test around the 26°C boundary (Section 2.7).
-- `Lab2_Report.docx`: Detailed lab report including PEAS tables, environment classifications, traces, and reflections.
+## Lab 2
+- `lab2_percepts.py`: Environment perception code.
+- `lab2_model.py`: Model-based reflex agent code.
+- `lab2_check.py`: Verification script.
+- `Lab2_Report.docx`: Lab report file.
+
+## Lab 3
+- `lab3_search.py`: BFS and DFS code.
+- `lab3_depth_search.py`: DLS and IDDFS code.
+- `lab3_ucs.py`: UCS code with C-G corridor.
+- `Lab3_Report.docx`: Lab report with register traces and results.
+
+**Author:** Muhammad Zeeshan
