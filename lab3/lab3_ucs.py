@@ -1,35 +1,36 @@
-import heapq
-
-# Weighted graph
 graph = {
-    'A': [('B', 1), ('C', 10)],
-    'B': [('D', 1), ('E', 1)],
-    'C': [('F', 2), ('G', 2)], # C to G corridor
-    'D': [],
-    'E': [('G', 1)],
-    'F': [],
-    'G': []
+    "A": [("B", 1), ("C", 3)],
+    "B": [("D", 2)],
+    "C": [("E", 2), ("G", 5)],
+    "D": [("C", 1), ("E", 4)],
+    "E": [("G", 2)],
+    "G": []
 }
 
-# Uniform Cost Search (UCS)
-def ucs(start, goal):
-    pq = [(0, start, [start])]
-    visited = set()
-    
-    while pq:
-        cost, node, path = heapq.heappop(pq)
-        
-        if node == goal: return path, cost
-        if node in visited: continue
-        
-        visited.add(node)
-        
-        for neighbor, weight in graph.get(node, []):
-            if neighbor not in visited:
-                heapq.heappush(pq, (cost + weight, neighbor, path + [neighbor]))
-                
-    return None, 0
+visited = set()
+queue = []
 
-path, cost = ucs('A', 'G')
-print("UCS Path:", path)
-print("Total Cost:", cost)
+def ucs(node):
+    queue.append((0, node))
+
+    while queue:
+        print(queue, visited)
+
+        queue.sort()
+        cost, temp = queue.pop(0)
+
+        if temp in visited:
+            continue
+
+        visited.add(temp)
+
+        if temp == "G":
+            print("Goal reached with cost:", cost)
+            break
+
+        for child, edge_cost in graph[temp]:
+            if child not in visited:
+                queue.append((cost + edge_cost, child))
+
+ucs("A")
+print(queue, visited)
